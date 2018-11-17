@@ -8,12 +8,12 @@
     android:layout_gravity="center"
     android:background="@color/colorTurckellBlue"
     android:gravity="center"
-    tools:context=".SplashScreenActivity">
+    tools:context=".views.SplashScreenActivity">
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="235dp"
+        android:layout_height="166dp"
         android:foregroundGravity="center"
         app:srcCompat="@drawable/logo"
         tools:ignore="ContentDescription"
