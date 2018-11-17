@@ -6,6 +6,9 @@ import android.os.Bundle;
 
 import com.juricepte.can.juricepte.R;
 
+/**
+ *
+ */
 public class SplashScreenActivity extends AppCompatActivity {
     protected int _splashTime = 3000;
 

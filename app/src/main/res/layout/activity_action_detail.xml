@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edt_actionDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="80"
@@ -16,13 +16,13 @@
         android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_actionDetail_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_gruops" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_actionDetail_gotoScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_go_score" />
