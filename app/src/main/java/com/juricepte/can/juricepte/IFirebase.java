@@ -3,7 +3,9 @@ package com.juricepte.can.juricepte;
 
 import com.juricepte.can.juricepte.models.Action;
 
+import java.util.List;
+
 public interface IFirebase {
-    public Action GetAllActions();
+    public List<Action> GetAllActions();
 
 }

@@ -4,32 +4,33 @@
     <data>
 
         <variable
-            name="actionAdapterView"
-            type="com.juricepte.can.juricepte.viewModels.ActionAdapterViewModel" />
+            name="groupAdapterView"
+            type="com.juricepte.can.juricepte.viewModels.GroupAdapterViewModel" />
     </data>
 
     <LinearLayout
-
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="5dp">
 
 
         <TextView
-            android:id="@+id/textView_rowAction_first"
+            android:id="@+id/textview_rowGroup_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={actionAdapterView.actionFirst}"
+            android:layout_weight="0.2"
+            android:text="@={groupAdapterView.actionFirst}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textview_rowAction_second"
+            android:id="@+id/textview_rowGroup_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={actionAdapterView.actionSecond}"
+            android:layout_weight="0.8"
+            android:text="@={groupAdapterView.actionSecond}"
             android:textColor="@color/colorPrimaryDark" />
     </LinearLayout>
 </layout>

@@ -11,6 +11,20 @@ public class Action {
     private String pasword;
     private List<Group> groupList;
 
+    public Action(int id, String name, Date date, String description, String pasword, List<Group> groupList) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.description = description;
+        this.pasword = pasword;
+        this.groupList = groupList;
+    }
+
+    public Action(String name, Date date) {
+        this.name = name;
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }

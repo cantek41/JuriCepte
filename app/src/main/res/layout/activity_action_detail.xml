@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:gravity="top|center"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
-        android:id="@+id/edt_actionDetail"
+    <data>
+
+        <variable
+            name="actionDetailView"
+            type="com.juricepte.can.juricepte.viewModels.ActionDetailViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="80"
-        android:ems="10"
-        android:hint="Hint"
-        android:inputType="textMultiLine" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="top|center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_actionDetail_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_gruops" />
+        <EditText
+            android:id="@+id/edt_actionDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:ems="10"
+            android:hint="Hint"
+            android:inputType="textMultiLine"
+            android:text="@={actionDetailView.details}" />
 
-    <Button
-        android:id="@+id/btn_actionDetail_gotoScore"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_go_score" />
+        <Button
+            android:id="@+id/btn_actionDetail_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() ->actionDetailView.goGroup()}"
+            android:text="@string/btn_gruops" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_actionDetail_gotoScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() ->actionDetailView.goScore()}"
+            android:text="@string/btn_go_score" />
+    </LinearLayout>
+</layout>
