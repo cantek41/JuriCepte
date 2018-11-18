@@ -1,26 +1,49 @@
 package com.juricepte.can.juricepte.views;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import com.google.firebase.FirebaseApp;
+import com.google.gson.Gson;
 import com.juricepte.can.juricepte.R;
-import com.juricepte.can.juricepte.databinding.ActivityActionDetailBinding;
-import com.juricepte.can.juricepte.viewModels.ActionDetailViewModel;
+import com.juricepte.can.juricepte.models.ListRating;
+import com.juricepte.can.juricepte.models.Rating;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 
 public class CriteriaActivity extends AppCompatActivity {
 
-    ActivityActionDetailBinding binding;
-    ActionDetailViewModel actionDetailViewModel;
+
+    private static final String TAG = "CriteriaActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseApp.initializeApp(this);
+        setContentView(R.layout.activity_criteria_list);
+        preperList();
+    }
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_criteria_list);
-        actionDetailViewModel = new ActionDetailViewModel(binding);
-        binding.setActionDetailView(actionDetailViewModel);
+
+    private void preperList() {
+        String json = null;
+        try {
+            InputStream inputStream = getAssets().open("criteria.json");
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+            json = new String(buffer, "UTF-8");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson gson= new Gson();
+        ListRating raitingList = gson.fromJson(json, ListRating.class);
+        Rating r=raitingList.getRatings().get(0);
+        Log.i(TAG,r.getName());
+
+
     }
 }

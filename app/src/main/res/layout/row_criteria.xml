@@ -17,8 +17,6 @@
         android:id="@+id/row_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:min_value="1"
-        app:max_value="15"/>
+        android:layout_margin="10dp"/>
 
 </LinearLayout>
