@@ -109,6 +109,7 @@ public class FirebaseMethods implements IFirebaseMethods {
 
             }
         });
+
     }
 
     public String getActiveGroup(Action action) {
@@ -117,6 +118,7 @@ public class FirebaseMethods implements IFirebaseMethods {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 group = dataSnapshot.child("activeGroupId").getValue(String.class);
+                Log.d(TAG, "onDataChange: "+group);
                 if (object instanceof ActionDetailViewModel) {
                     ((ActionDetailViewModel) object).doActiveGroupWorks(group);
                 }
@@ -129,7 +131,19 @@ public class FirebaseMethods implements IFirebaseMethods {
         });
         return group;
     }
-
+    public Group getGroupId(String id){
+        db.collection(groupCollectionName).document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    Group group = task.getResult().toObject(Group.class);
+                    group.setId(id);
+                    Log.d(TAG, "onComplete: group"+group.getName());
+                }
+            }
+        });
+        return null;
+    }
 
     @Override
     public void joinAction(Action action, final String password) {
@@ -306,17 +320,24 @@ public class FirebaseMethods implements IFirebaseMethods {
     }
 
     public void setRatingScore(Rating rating) {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("totalRatingScore", rating.getRate());
-        db.collection(groupCollectionName).document().collection(rating.getGroupId()).document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseUser user = auth.getCurrentUser();
+
+        db.collection(groupCollectionName).document(rating.getGroupId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "onComplete: success");
+                    Group group = task.getResult().toObject(Group.class);
+                    group.setId(rating.getGroupId());
+                    group.setTotalRate(group.getTotalRate()+rating.getRate());
+                    db.collection(groupCollectionName).document(rating.getGroupId()).update("totalRate",group.getTotalRate());
+                    HashMap<String,Object> map = new HashMap();
+                    map.put("name",user.getDisplayName());
+                    map.put("vote",true);
+                    dbRef.child(group.getEventId()).child("users").child(user.getUid()).setValue(map);
                 } else
                     Log.d(TAG, "onComplete: " + task.getException());
             }
         });
-
     }
 }

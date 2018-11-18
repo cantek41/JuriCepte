@@ -8,6 +8,7 @@ import com.juricepte.can.juricepte.FirebaseMethods;
 import com.juricepte.can.juricepte.R;
 import com.juricepte.can.juricepte.models.Action;
 import com.juricepte.can.juricepte.models.Group;
+import com.juricepte.can.juricepte.models.Rating;
 
 import java.util.Date;
 
@@ -24,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
-        //FirebaseMethods firebase = new FirebaseMethods(SplashScreenActivity.this);
+        FirebaseMethods firebase = new FirebaseMethods(SplashScreenActivity.this);
         /*Action action = new Action();
         action.setName("Geleceği Yazanlar");
         action.setDate(new Date());
@@ -40,6 +41,21 @@ public class SplashScreenActivity extends AppCompatActivity {
         group.setTotalRate(5);
         firebase.addActionGroup(group);
         firebase.addActionGroup(group); */
+        Action action = new Action();
+       action.setId("SCOaoWNf6FjaOFInYxyM");
+       Group group = new Group();
+       action.setId("SCOaoWNf6FjaOFInYxyM");
+       group.setId("NG2lZLRtwd7XoayR9zEt");
+       group.setEventId("SCOaoWNf6FjaOFInYxyM");
+        //firebase.getActiveGroup(action);
+        firebase.getGroupId("NG2lZLRtwd7XoayR9zEt");
+       // Rating rating = new Rating();
+
+       // rating.setGroupId("NG2lZLRtwd7XoayR9zEt");
+        //rating.setRate(10);
+
+        firebase.setActiveGroup(action,group);
+       // firebase.setRatingScore(rating);
         splashTread = new Thread() {
             @Override
             public void run() {
