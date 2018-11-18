@@ -6,6 +6,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.juricepte.can.juricepte.Firebase;
+import com.juricepte.can.juricepte.FirebaseMethods;
 import com.juricepte.can.juricepte.databinding.ActivityActionListBinding;
 import com.juricepte.can.juricepte.models.Action;
 import com.juricepte.can.juricepte.views.ActionAdapter;
@@ -19,8 +20,16 @@ public class ActionListViewModel extends BaseViewModel {
     public ActionListViewModel(ActivityActionListBinding binding) {
         this.binding = binding;
         this.context = binding.getRoot().getContext();
-        actionList = firebase.GetAllActions();
+        init();
 
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        new FirebaseMethods().getGroupListByEventId("1");
+        //actionList = firebase.GetAllActions();
+/*
         ActionAdapter actionAdapter = new ActionAdapter(actionList, context);
         binding.listViewAction.setAdapter(actionAdapter);
 
@@ -31,7 +40,8 @@ public class ActionListViewModel extends BaseViewModel {
                 Toast.makeText(context, actionList.get(i).getName(), Toast.LENGTH_SHORT).show();
                 //showPasswordDialog(actionList.get(i));
             }
-        });
+        });*/
+
     }
     /*
     public void showPasswordDialog(final Action action) {

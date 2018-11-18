@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.FirebaseApp;
 import com.juricepte.can.juricepte.models.Action;
 
 public class EventDetailActivity extends AppCompatActivity {
@@ -14,6 +15,8 @@ public class EventDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
+
 //        setContentView(R.layout.activity_group);
 
         fragmentManager = getFragmentManager();

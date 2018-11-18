@@ -15,6 +15,7 @@ public class MainViewModel extends BaseViewModel {
     public MainViewModel(ActivityMainBinding binding) {
         this.binding = binding;
         this.context = binding.getRoot().getContext();
+        init();
     }
 
     public void getActionList() {

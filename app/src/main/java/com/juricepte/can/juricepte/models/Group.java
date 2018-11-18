@@ -4,25 +4,19 @@ import java.util.Date;
 import java.util.List;
 
 public class Group {
-    private int id;
+    private String id;
+    private String eventId;
     private String name;
     private String projectName;
-    private List<Rating> ratingList;
-    private Date date;
 
-    public Date getDate() {
-        return date;
+    public Group() {
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,19 +28,19 @@ public class Group {
         this.name = name;
     }
 
+    public String getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
+
     public String getProjectName() {
         return projectName;
     }
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
-    }
-
-    public List<Rating> getRatingList() {
-        return ratingList;
-    }
-
-    public void setRatingList(List<Rating> ratingList) {
-        this.ratingList = ratingList;
     }
 }

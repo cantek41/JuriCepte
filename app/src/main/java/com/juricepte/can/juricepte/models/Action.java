@@ -4,32 +4,20 @@ import java.util.Date;
 import java.util.List;
 
 public class Action {
-    private int id;
+    private String id;
     private String name;
     private Date date;
     private String description;
     private String pasword;
-    private List<Group> groupList;
 
-    public Action(int id, String name, Date date, String description, String pasword, List<Group> groupList) {
-        this.id = id;
-        this.name = name;
-        this.date = date;
-        this.description = description;
-        this.pasword = pasword;
-        this.groupList = groupList;
+    public Action() {
     }
 
-    public Action(String name, Date date) {
-        this.name = name;
-        this.date = date;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -63,13 +51,4 @@ public class Action {
 
     public void setPasword(String pasword) {
         this.pasword = pasword;
-    }
-
-    public List<Group> getGroupList() {
-        return groupList;
-    }
-
-    public void setGroupList(List<Group> groupList) {
-        this.groupList = groupList;
-    }
-}
+    }}

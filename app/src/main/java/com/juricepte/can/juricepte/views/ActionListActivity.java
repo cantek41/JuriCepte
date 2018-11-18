@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.juricepte.can.juricepte.Firebase;
 import com.juricepte.can.juricepte.R;
 import com.juricepte.can.juricepte.databinding.ActivityActionListBinding;
@@ -28,6 +29,7 @@ public class ActionListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_action_list);
         actionListViewModel = new ActionListViewModel(binding);
         binding.setActionListView(actionListViewModel);

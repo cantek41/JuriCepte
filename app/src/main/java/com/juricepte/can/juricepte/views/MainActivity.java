@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.ListView;
 
+import com.google.firebase.FirebaseApp;
 import com.juricepte.can.juricepte.R;
 import com.juricepte.can.juricepte.models.Action;
 import com.juricepte.can.juricepte.viewModels.MainViewModel;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
+
         setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = new MainViewModel(binding);
