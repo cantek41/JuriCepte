@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.widget.ListView;
 
 import com.google.firebase.FirebaseApp;
+import com.juricepte.can.juricepte.FirebaseMethods;
 import com.juricepte.can.juricepte.R;
 import com.juricepte.can.juricepte.models.Action;
+import com.juricepte.can.juricepte.models.Group;
 import com.juricepte.can.juricepte.viewModels.MainViewModel;
 
 import java.util.ArrayList;
@@ -30,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         setContentView(R.layout.activity_main);
+        Action action = new Action();
+
+        action.setId("7R618NZxRpmBLMc7DQrC");
+        FirebaseMethods methods = new FirebaseMethods();
+        //methods.signUp("kayali.furkan@gmail.com","testPassword","furkan kayalı");
+       methods.signIn("kayali.furkan@gmail.com","testPassword");
+       methods.joinAction(action,"1234");
+        Group group = new Group();
+        group.setId("1GrARqk373PgUBeG9I9R");
+        methods.setActiveGroup(action,group);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = new MainViewModel(binding);
         binding.setMainView(mainViewModel);
