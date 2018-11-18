@@ -1,9 +1,11 @@
 package com.juricepte.can.juricepte.viewModels;
 
+import static android.content.ContentValues.TAG;
 import static br.com.zbra.androidlinq.Linq.stream;
 
 import android.content.Intent;
 import android.databinding.ObservableField;
+import android.util.Log;
 import android.view.View;
 
 import com.juricepte.can.juricepte.databinding.ActivityActionDetailBinding;
@@ -43,8 +45,9 @@ public class ActionDetailViewModel extends BaseViewModel {
 
     public void goGroup() {
         Intent intent = new Intent(context, GroupListActivity.class);
+        Log.d(TAG, "goGroup: "+eventId);
         intent.putExtra("eventId", eventId);
-        context.startActivity(new Intent(context, GroupListActivity.class));
+        context.startActivity(intent);
     }
 
     public void goScore() {

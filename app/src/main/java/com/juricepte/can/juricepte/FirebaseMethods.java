@@ -51,6 +51,7 @@ public class FirebaseMethods implements IFirebaseMethods {
     private String ratingCollectionName = "Ratings";
     private String group;
     private Object object;
+    private int mahmut;
 
     public FirebaseMethods(Object object) {
         this.object = object;
@@ -116,8 +117,8 @@ public class FirebaseMethods implements IFirebaseMethods {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 group = dataSnapshot.child("activeGroupId").getValue(String.class);
-                if(object instanceof ActionDetailViewModel){
-                    ((ActionDetailViewModel)object).doActiveGroupWorks(group);
+                if (object instanceof ActionDetailViewModel) {
+                    ((ActionDetailViewModel) object).doActiveGroupWorks(group);
                 }
             }
 
@@ -183,21 +184,66 @@ public class FirebaseMethods implements IFirebaseMethods {
 
     public List<Group> getGroupListByActionId(final String actionId) {
         final List<Group> groupList = new ArrayList<>();
+        Log.d(TAG, "getGroupListByActionId: actionId:" + actionId);
         db.collection(groupCollectionName).whereEqualTo("eventId", actionId).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                Log.d(TAG, "onComplete: task" + task.isSuccessful());
                 if (task.isSuccessful()) {
+
                     for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                        Log.d(TAG, "onComplete: " + queryDocumentSnapshot.getData());
                         Group group = queryDocumentSnapshot.toObject(Group.class);
                         group.setId(queryDocumentSnapshot.getId());
-                        groupList.add(group);
+                        Log.d(TAG, "onComplete: " + group.getId());
+                        group.setId(queryDocumentSnapshot.getId());
+
+
+                        final int[] userCount = new int[1];
+                        db.collection(groupCollectionName).document(group.getId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    Group group = (Group) task.getResult().toObject(Group.class);
+                                    Log.d(TAG, "onComplete: " + group.getTotalRate());
+                                    dbRef.child(group.getEventId()).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            userCount[0] = 0;
+                                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+
+                                                if ((boolean) snapshot.child("vote").getValue(boolean.class)) {
+                                                    userCount[0] += 1;
+                                                }
+
+
+                                            }
+                                            if (userCount[0] != 0) {
+                                                group.setAvarageScore(group.getTotalRate() / userCount[0]);
+                                                groupList.add(group);
+                                                if (object instanceof GroupViewModel) {
+                                                    ((GroupViewModel) object).doGroupListWork(groupList);
+                                                }
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+                                }
+
+                            }
+                        });
+
                         Log.d(TAG, "onComplete: " + group.getId());
                     }
-                    if (object instanceof GroupViewModel) {
-                        ((GroupViewModel) object).doGroupListWork(groupList);
-                    }
-                }else{
-                    Log.w(TAG, "onComplete: ",task.getException() );
+
+                } else {
+                    Log.w(TAG, "onComplete: ", task.getException());
                 }
             }
         });
@@ -220,34 +266,6 @@ public class FirebaseMethods implements IFirebaseMethods {
         });
         return ratingList;
     }
-    public void getRatingByGroup(String groupId){
-        final int[] userCount = new int[1];
-        db.collection(groupCollectionName).document(groupId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    Group group = (Group)  task.getResult().toObject(Group.class);
-
-                    dbRef.child(group.getEventId()).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            userCount[0] = (int) dataSnapshot.getChildrenCount();
-                            if (userCount[0] != 0) {
-                                int rate = (group.getTotalRate() * 100) / userCount[0];
-                                Log.d(TAG, "onDataChange: " + rate);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-                }
-
-            }
-        });
-    }
 
     public void createAction(Action action) {
         db.collection(actionCollectionName).add(action).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -255,7 +273,7 @@ public class FirebaseMethods implements IFirebaseMethods {
             public void onSuccess(DocumentReference documentReference) {
                 Log.d(TAG, "onSuccess: " + documentReference.getId());
                 HashMap<String, Object> map = new HashMap<>();
-                map.put("activeGroupId", 0);
+                map.put("activeGroupId", "0");
                 map.put("Users", new ArrayList<>());
                 dbRef.child(documentReference.getId()).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -288,15 +306,15 @@ public class FirebaseMethods implements IFirebaseMethods {
     }
 
     public void setRatingScore(Rating rating) {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("totalRatingScore",rating.getRate());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("totalRatingScore", rating.getRate());
         db.collection(groupCollectionName).document().collection(rating.getGroupId()).document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Log.d(TAG, "onComplete: success");
-                }else
-                    Log.d(TAG, "onComplete: "+task.getException());
+                } else
+                    Log.d(TAG, "onComplete: " + task.getException());
             }
         });
 

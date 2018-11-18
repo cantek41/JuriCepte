@@ -9,6 +9,16 @@ public class Group {
     private String name;
     private String projectName;
     private int totalRate;
+    private int avarageScore;
+
+    public int getAvarageScore() {
+        return avarageScore;
+    }
+
+    public void setAvarageScore(int avarageScore) {
+        this.avarageScore = avarageScore;
+    }
+
     public Group() {
     }
 
