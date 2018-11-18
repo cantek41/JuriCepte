@@ -1,8 +1,20 @@
 <resources>
     <string name="app_name">Juri Cepte</string>
+    <string name="txt_create">Üye Kaydı</string>
     <string name="actions">Etkinlikler</string>
     <string name="action_detail">Etkinlik Detayı</string>
     <string name="btn_gruops">Gruplar</string>
     <string name="btn_score">Oyla</string>
     <string name="btn_go_score">Sahnedeki Grubu Oyla</string>
+    <string name="btn_add_group">Grup Ekle</string>
+    <string name="btn_create">Oluştur</string>
+    <string name="txt_active_group">Sahnedeki Grubu Seç</string>
+    <string name="txt_activete">Oylama Durumu</string>
+    <array name="bootstrap_dropdown_example_data">
+        <item>Grup 1</item>
+        <item>Grup 2</item>
+        <item>Grup 3</item>
+        <item>Grup 4</item>
+    </array>
+
 </resources>

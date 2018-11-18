@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/backgroundgrident"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="50dp"
+    tools:context=".views.SplashScreenActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/bootstrap_h5_hori_padding"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/txt_creat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/bootstrap_h5_hori_padding"
+        android:text="@string/txt_create"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/edt_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/bootstrap_h5_hori_padding"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="@dimen/bootstrap_h5_hori_padding"
+        android:hint="User Name"
+        app:bootstrapBrand="success"
+        app:roundedCorners="true" />
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/edt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/bootstrap_h5_hori_padding"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="@dimen/bootstrap_h5_hori_padding"
+        android:ems="10"
+        android:hint="email"
+        app:bootstrapBrand="success"
+        app:roundedCorners="true" />
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/edt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/bootstrap_h5_hori_padding"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="@dimen/bootstrap_h5_hori_padding"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="textPassword"
+        app:bootstrapBrand="success"
+        app:roundedCorners="true" />
+
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/btn_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_create"
+        app:bootstrapBrand="primary"
+        app:roundedCorners="true"
+        />
+
+</LinearLayout>
