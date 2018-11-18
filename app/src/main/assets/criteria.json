@@ -1,74 +1,63 @@
-[
+{
+"ratings":[
   {
     "id": "0",
     "name": "Ürün, temel kullanılabilirlik gereksinimlerini ve tasarım kriterlerini taşıyor mu?",
-    "min_value": 0,
-    "max_value": 15
+    "MaxRate": 15
   },
   {
     "id": "1",
     "name": "Kullanıcı uygulama içindeki en önemli görevleri en hızlı ve hatasız şekilde yapabiliyor mu?",
-    "min_value": 0,
-    "max_value": 15
+    "MaxRate": 15
   },
   {
     "id": "2",
     "name": "Ürün;tasarım, kullanım, fikir, iş modeli konularında kendi içinde özgün bir değer üretiyor mu?",
-    "min_value": 0,
-    "max_value": 10
+    "MaxRate": 10
   },
   {
     "id": "3",
     "name": "Bir problemi daha hızlı, etkin ya da verimli çözüyor mu?",
-    "min_value": 0,
-    "max_value": 10
+    "MaxRate": 10
   },
   {
     "id": "4",
     "name": "Ortaya çıkacak çalışma, hayatı iyileştiriyor, teknolojiyi sosyal yaşam ya da sektörle buluşturuyor mu",
-    "min_value": 0,
-    "max_value": 10
+    "MaxRate": 10
   },
   {
     "id": "5",
     "name": "Ürün, insanların hayatında bir farkındalık yaratıyor mu?",
-    "min_value": 0,
-    "max_value": 5
+    "MaxRate": 5
   },
   {
     "id": "6",
     "name": "Uygulamanın Türkiye için yarattığı değer, sosyal fayda nedir?",
-    "min_value": 0,
-    "max_value": 5
+    "MaxRate": 5
   },
   {
     "id": "7",
     "name": "Ürün, kendi gelişimini destekleyecek bir model (dışardan katkı, yatırımcı desteği, reklam geliri, uygulama içi satın alma kurgusu, 3. parti firmalarla sponsorluk vb) öngörüyor mu?",
-    "min_value": 0,
-    "max_value": 10
+    "MaxRate": 10
   },
   {
     "id": "8",
     "name": "Pazardaki bir ihtiyacı, problemi çözüyor mu?",
-    "min_value": 0,
-    "max_value": 5
+    "MaxRate": 5
   },
   {
     "id": "9",
     "name": "Bu iş modeli devamlılık sağlar mı?",
-    "min_value": 0,
-    "max_value": 5
+    "MaxRate": 5
   },
   {
     "id": "10",
     "name": "Katılımcı sunum süresini etkili ve verimli şekilde kullandı mı?",
-    "min_value": 0,
-    "max_value": 4
+    "MaxRate": 4
   },
   {
     "id": "11",
     "name": "Katılımcı sunumu etkileyici-açıklayıcı-proje hakkında heyecan uyandırıcı mıydı?",
-    "min_value": 0,
-    "max_value": 6
+    "MaxRate": 6
   }
-]
+]}

@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/bootstrap_h5_hori_padding">
 
     <TextView
         android:id="@+id/tv_eventDialog_title"
@@ -10,37 +12,59 @@
         android:layout_height="wrap_content"
         android:text="TextView" />
 
-    <EditText
+    <com.beardedhen.androidbootstrap.BootstrapEditText
         android:id="@+id/edt_eventDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_eventDialog_title"
         android:ems="10"
+        android:hint="password"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:layout_margin="@dimen/bootstrap_h5_hori_padding"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="@dimen/bootstrap_h5_hori_padding"
+        app:bootstrapBrand="success"
+        app:roundedCorners="true"/>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edt_eventDialog"
+        android:layout_alignEnd="@+id/edt_eventDialog"
+        android:layout_alignRight="@+id/edt_eventDialog"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:gravity="right"
         android:orientation="horizontal">
 
-        <Button
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/btn_eventDailogOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edt_eventDialog"
+
+            android:layout_marginRight="@dimen/bootstrap_h5_hori_padding"
             android:text="OK"
+            app:bootstrapBrand="primary"
+            app:roundedCorners="true"
             tools:layout_editor_absoluteX="135dp"
             tools:layout_editor_absoluteY="0dp" />
 
-        <Button
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/btn_eventDialogCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edt_eventDialog"
+
             android:layout_toRightOf="@+id/btn_eventDailogOk"
-            android:text="Cancel" />
+            android:text="Cancel"
+            app:bootstrapBrand="danger"
+            app:roundedCorners="true" />
+
+
     </LinearLayout>
 
 </RelativeLayout>
