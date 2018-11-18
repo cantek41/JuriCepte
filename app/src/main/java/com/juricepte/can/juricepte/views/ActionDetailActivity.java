@@ -18,9 +18,14 @@ public class ActionDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_action_detail);
         actionDetailViewModel = new ActionDetailViewModel(binding);
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            actionDetailViewModel.eventId = bundle.getString("selectedActionId");
+        }
+
         binding.setActionDetailView(actionDetailViewModel);
     }
 }
