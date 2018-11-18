@@ -1,23 +1,71 @@
 <resources>
-    <string name="app_name">Juri Cepte</string>
-    <string name="txt_create">Üye Kaydı</string>
-    <string name="actions">Etkinlikler</string>
-    <string name="action_detail">Etkinlik Detayı</string>
-    <string name="activite_status">Oylama Durumu</string>
-    <string name="activite">Oylama</string>
-    <string name="btn_gruops">Gruplar</string>
-    <string name="btn_gruopies">Gruplar</string>
-    <string name="btn_score">Oyla</string>
-    <string name="btn_go_score">Sahnedeki Grubu Oyla</string>
-    <string name="btn_add_group">Grup Ekle</string>
-    <string name="btn_create">Kullanıcı Oluştur</string>
-    <string name="txt_active_group">Sahnedeki Grubu Seç</string>
-    <string name="txt_activete">Oylama Durumu</string>
-    <array name="bootstrap_dropdown_example_data">
-        <item>Grup 1</item>
-        <item>Grup 2</item>
-        <item>Grup 3</item>
-        <item>Grup 4</item>
-    </array>
 
+<string name="app_name">Juri Cepte</string>
+<string name="txt_create">Üye Kaydı</string>
+<string name="actions">Etkinlikler</string>
+<string name="action_detail">Etkinlik Detayı</string>
+<string name="activite_status">Oylama Durumu</string>
+<string name="activite">Oylama</string>
+<string name="btn_gruops">Gruplar</string>
+<string name="btn_gruopies">Gruplar</string>
+<string name="btn_score">Oyla</string>
+<string name="btn_go_score">Sahnedeki Grubu Oyla</string>
+<string name="btn_add_group">Grup Ekle</string>
+<string name="btn_create">Kullanıcı Oluştur</string>
+<string name="txt_active_group">Sahnedeki Grubu Seç</string>
+<string name="txt_activete">Oylama Durumu</string>
+    <string name="current_group">Assign current group</string>
+    <array name="bootstrap_dropdown_example_data">
+    <item>Grup 1</item>
+    <item>Grup 2</item>
+    <item>Grup 3</item>
+    <item>Grup 4</item>
+    <item>Grup 5</item>
+    <item>Grup 6</item>
+    <item>Grup 7</item>
+    <item>Grup 8</item>
+    <item>Grup 9</item>
+    <item>Grup 10</item>
+    <item>Grup 12</item>
+    <item>Grup 13</item>
+    <item>Grup 14</item>
+    <item>Grup 15</item>
+    <item>Grup 16</item>
+    <item>Grup 17</item>
+    <item>Grup 18</item>
+    <item>Grup 19</item>
+    <item>Grup 20</item>
+    <item>Grup 21</item>
+    <item>Grup 22</item>
+    <item>Grup 23</item>
+    <item>Grup 24</item>
+    <item>Grup 25</item>
+    <item>Grup 26</item>
+    <item>Grup 27</item>
+    <item>Grup 28</item>
+    <item>Grup 29</item>
+    <item>Grup 30</item>
+    <item>Grup 31</item>
+    <item>Grup 32</item>
+    <item>Grup 33</item>
+    <item>Grup 34</item>
+    <item>Grup 35</item>
+    <item>Grup 36</item>
+    <item>Grup 37</item>
+    <item>Grup 38</item>
+    <item>Grup 39</item>
+    <item>Grup 40</item>
+    <item>Grup 41</item>
+    <item>Grup 42</item>
+    <item>Grup 43</item>
+    <item>Grup 44</item>
+    <item>Grup 45</item>
+    <item>Grup 46</item>
+    <item>Grup 47</item>
+    <item>Grup 48</item>
+    <item>Grup 49</item>
+    <item>Grup 50</item>
+    <item>Grup 51</item>
+    <item>Grup 52</item>
+</array>
 </resources>

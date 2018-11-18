@@ -4,11 +4,9 @@ import static br.com.zbra.androidlinq.Linq.stream;
 
 import android.content.Intent;
 import android.databinding.ObservableField;
-import android.view.View;
 
 import com.juricepte.can.juricepte.databinding.ActivityActionDetailBinding;
 import com.juricepte.can.juricepte.models.Action;
-import com.juricepte.can.juricepte.models.Group;
 import com.juricepte.can.juricepte.views.CriteriaActivity;
 import com.juricepte.can.juricepte.views.GroupListActivity;
 

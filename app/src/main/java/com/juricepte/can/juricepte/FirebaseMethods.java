@@ -116,8 +116,8 @@ public class FirebaseMethods implements IFirebaseMethods {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 group = dataSnapshot.child("activeGroupId").getValue(String.class);
-                if(object instanceof ActionDetailViewModel){
-                    ((ActionDetailViewModel)object).doActiveGroupWorks(group);
+                if (object instanceof ActionDetailViewModel) {
+                    ((ActionDetailViewModel) object).doActiveGroupWorks(group);
                 }
             }
 
@@ -196,8 +196,8 @@ public class FirebaseMethods implements IFirebaseMethods {
                     if (object instanceof GroupViewModel) {
                         ((GroupViewModel) object).doGroupListWork(groupList);
                     }
-                }else{
-                    Log.w(TAG, "onComplete: ",task.getException() );
+                } else {
+                    Log.w(TAG, "onComplete: ", task.getException());
                 }
             }
         });
@@ -220,13 +220,14 @@ public class FirebaseMethods implements IFirebaseMethods {
         });
         return ratingList;
     }
-    public void getRatingByGroup(String groupId){
+
+    public void getRatingByGroup(String groupId) {
         final int[] userCount = new int[1];
         db.collection(groupCollectionName).document(groupId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    Group group = (Group)  task.getResult().toObject(Group.class);
+                    Group group = (Group) task.getResult().toObject(Group.class);
 
                     dbRef.child(group.getEventId()).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -288,15 +289,15 @@ public class FirebaseMethods implements IFirebaseMethods {
     }
 
     public void setRatingScore(Rating rating) {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("totalRatingScore",rating.getRate());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("totalRatingScore", rating.getRate());
         db.collection(groupCollectionName).document().collection(rating.getGroupId()).document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Log.d(TAG, "onComplete: success");
-                }else
-                    Log.d(TAG, "onComplete: "+task.getException());
+                } else
+                    Log.d(TAG, "onComplete: " + task.getException());
             }
         });
 

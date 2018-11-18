@@ -18,6 +18,7 @@ import com.juricepte.can.juricepte.models.Action;
 import com.juricepte.can.juricepte.views.ActionAdapter;
 import com.juricepte.can.juricepte.views.ActionDetailActivity;
 import com.juricepte.can.juricepte.views.ActionListActivity;
+import com.juricepte.can.juricepte.views.ActionStatusActivity;
 
 import java.util.List;
 
@@ -102,6 +103,11 @@ public class ActionListViewModel extends BaseViewModel {
         } else {
             Toast.makeText(context, "Wrong password", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void goAdmin() {
+        Intent intent = new Intent(context, ActionStatusActivity.class);
+        context.startActivity(intent);
     }
 }
 
