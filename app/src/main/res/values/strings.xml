@@ -3,11 +3,14 @@
     <string name="txt_create">Üye Kaydı</string>
     <string name="actions">Etkinlikler</string>
     <string name="action_detail">Etkinlik Detayı</string>
+    <string name="activite_status">Oylama Durumu</string>
+    <string name="activite">Oylama</string>
     <string name="btn_gruops">Gruplar</string>
+    <string name="btn_gruopies">Gruplar</string>
     <string name="btn_score">Oyla</string>
     <string name="btn_go_score">Sahnedeki Grubu Oyla</string>
     <string name="btn_add_group">Grup Ekle</string>
-    <string name="btn_create">Oluştur</string>
+    <string name="btn_create">Kullanıcı Oluştur</string>
     <string name="txt_active_group">Sahnedeki Grubu Seç</string>
     <string name="txt_activete">Oylama Durumu</string>
     <array name="bootstrap_dropdown_example_data">

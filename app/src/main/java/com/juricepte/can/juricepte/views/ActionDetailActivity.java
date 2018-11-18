@@ -27,5 +27,7 @@ public class ActionDetailActivity extends AppCompatActivity {
         }
 
         binding.setActionDetailView(actionDetailViewModel);
+        getSupportActionBar().setTitle(getString(R.string.activite_status));
+
     }
 }

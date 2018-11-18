@@ -24,5 +24,7 @@ public class UserCreateActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_create);
         mainViewModel = new MainViewModel(binding);
         binding.setMainView(mainViewModel);
+        getSupportActionBar().setTitle(getString(R.string.btn_create));
+
     }
 }

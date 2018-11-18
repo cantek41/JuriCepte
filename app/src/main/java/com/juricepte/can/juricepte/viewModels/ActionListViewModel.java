@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.juricepte.can.juricepte.R;
 import com.juricepte.can.juricepte.databinding.ActivityActionListBinding;
 import com.juricepte.can.juricepte.models.Action;
@@ -54,9 +56,9 @@ public class ActionListViewModel extends BaseViewModel {
         b = dialogBuilder.create();
 
         final TextView title = (TextView) dialogView.findViewById(R.id.tv_eventDialog_title);
-        edt = (EditText) dialogView.findViewById(R.id.edt_eventDialog);
-        final Button btnOk = dialogView.findViewById(R.id.btn_eventDailogOk);
-        final Button btnCancel = dialogView.findViewById(R.id.btn_eventDialogCancel);
+        edt = (BootstrapEditText) dialogView.findViewById(R.id.edt_eventDialog);
+        final BootstrapButton btnOk = dialogView.findViewById(R.id.btn_eventDailogOk);
+        final BootstrapButton btnCancel = dialogView.findViewById(R.id.btn_eventDialogCancel);
 
         title.setText("Please enter event password");
 

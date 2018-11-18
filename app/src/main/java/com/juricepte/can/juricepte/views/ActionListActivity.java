@@ -20,5 +20,6 @@ public class ActionListActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_action_list);
         actionListViewModel = new ActionListViewModel(binding);
         binding.setActionListView(actionListViewModel);
+        getSupportActionBar().setTitle(getString(R.string.actions));
     }
 }

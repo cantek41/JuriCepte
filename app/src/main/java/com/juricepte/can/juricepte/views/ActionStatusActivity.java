@@ -20,7 +20,7 @@ public class ActionStatusActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     MainViewModel mainViewModel;
 
-    private static final String TAG = "UserCreateActivity";
+    private static final String TAG = "ActionStatusActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +31,7 @@ public class ActionStatusActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_active_group_list);
         mainViewModel = new MainViewModel(binding);
         binding.setMainView(mainViewModel);
+        getSupportActionBar().setTitle(getString(R.string.activite_status));
+
     }
 }

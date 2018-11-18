@@ -25,6 +25,8 @@ public class GroupListActivity extends AppCompatActivity {
             groupViewModel.eventId = bundle.getString("eventId");
         }
         binding.setGroupsView(groupViewModel);
+        getSupportActionBar().setTitle(getString(R.string.btn_gruops));
+
 
     }
 }
