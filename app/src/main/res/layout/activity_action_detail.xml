@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -25,18 +28,30 @@
             android:inputType="textMultiLine"
             android:text="@={actionDetailView.details}" />
 
-        <Button
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/btn_actionDetail_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
             android:onClick="@{() ->actionDetailView.goGroup()}"
-            android:text="@string/btn_gruops" />
+            android:text="@string/btn_gruops"
+            app:bootstrapBrand="success"
+            app:roundedCorners="true" />
 
-        <Button
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/btn_actionDetail_gotoScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
             android:onClick="@{() ->actionDetailView.goScore()}"
-            android:text="@string/btn_go_score" />
+            android:text="@string/btn_go_score"
+            app:bootstrapBrand="primary"
+            app:roundedCorners="true" />
     </LinearLayout>
 </layout>
