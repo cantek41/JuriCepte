@@ -29,6 +29,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.juricepte.can.juricepte.models.Action;
 import com.juricepte.can.juricepte.models.Group;
 import com.juricepte.can.juricepte.models.Rating;
+import com.juricepte.can.juricepte.viewModels.ActionDetailViewModel;
+import com.juricepte.can.juricepte.viewModels.ActionListViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +48,9 @@ import static android.content.ContentValues.TAG;
         private String groupCollectionName = "Groups";
         private String ratingCollectionName = "Ratings";
         private Group group;
-        public FirebaseMethods() {
+        private Object object;
+        public FirebaseMethods(Object object) {
+            this.object = object;
             this.db = FirebaseFirestore.getInstance();
             this.auth = FirebaseAuth.getInstance();
             this.realDb = FirebaseDatabase.getInstance();
@@ -137,6 +141,13 @@ import static android.content.ContentValues.TAG;
                             Action Action = (Action) documentSnapshot.toObject(Action.class);
                             actionList.add(Action);
                             Log.d(TAG, "onComplete: " + Action.getName());
+                        }
+
+                        if (object instanceof ActionListViewModel) {
+                            ((ActionListViewModel)object).doGetAllEventWorks(actionList);
+                        }
+                        if (object instanceof ActionDetailViewModel) {
+                            ((ActionDetailViewModel)object).doGetAllEventWorks(actionList);
                         }
                     }
                 }
