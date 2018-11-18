@@ -3,6 +3,7 @@ package com.juricepte.can.juricepte.views;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.firebase.FirebaseApp;
 import com.juricepte.can.juricepte.R;
@@ -24,6 +25,7 @@ public class ActionDetailActivity extends AppCompatActivity {
 
         if (bundle != null) {
             actionDetailViewModel.eventId = bundle.getString("selectedActionId");
+            Log.d("log", "onCreate: "+actionDetailViewModel.eventId);
         }
 
         binding.setActionDetailView(actionDetailViewModel);

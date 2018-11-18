@@ -15,29 +15,37 @@ public class GroupViewModel extends BaseViewModel {
     ActivityGroupsBinding binding;
     public String eventId;
 
+    public String getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(String eventId) {
+        Log.d(TAG, "setEventId: "+eventId);
+        this.eventId = eventId;
+    }
+
     public GroupViewModel(ActivityGroupsBinding binding) {
         this.binding = binding;
         this.context = binding.getRoot().getContext();
         this.object = GroupViewModel.this;
-        init();
     }
 
     @Override
     public void init() {
         super.init();
+        Log.d(TAG, "init: "+eventId);
         firebase.getGroupListByActionId(eventId);
 
     }
 
     public void doGroupListWork(List<Group> groups) {
-
         //groups = firebase.getGroupListByActionId(eventId);
         Log.d(TAG, "doGroupListWork: "+groups.size());
+       // firebase.getRatingByGroup(  groups.get(0).getId());
         GroupAdapter groupAdapter = new GroupAdapter(groups, context);
         binding.listGroups.setAdapter(groupAdapter);
 
     }
-
     public void goScore() {
 
 

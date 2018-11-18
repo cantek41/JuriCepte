@@ -51,7 +51,7 @@ public class GroupAdapter extends BaseAdapter {
         binding.setGroupAdapterView(groupAdapterViewModel);
 
         groupAdapterViewModel.actionFirst.set(groupList.get(i).getName());
-        groupAdapterViewModel.actionSecond.set(groupList.get(i).getName() + " Second");
+        groupAdapterViewModel.actionSecond.set(String.valueOf(groupList.get(i).getAvarageScore()));
         return binding.getRoot();
 
     }
