@@ -49,6 +49,10 @@ public class GroupAdapter extends BaseAdapter {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.row_group, viewGroup, false);
         groupAdapterViewModel = new GroupAdapterViewModel();
         binding.setGroupAdapterView(groupAdapterViewModel);
+
+        groupAdapterViewModel.actionFirst.set(groupList.get(i).getName());
+        groupAdapterViewModel.actionSecond.set(groupList.get(i).getName() + " Second");
         return binding.getRoot();
+
     }
 }

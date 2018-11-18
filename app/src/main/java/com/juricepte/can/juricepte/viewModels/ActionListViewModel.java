@@ -93,11 +93,10 @@ public class ActionListViewModel extends BaseViewModel {
 
     public void doActionJoinWorks(boolean isOk) {
         if (isOk) {
-            if (edt.getText().toString().equals(action.getPasword())) {
-                Intent intent = new Intent(context, ActionDetailActivity.class);
-                intent.putExtra("selectedActionId", action.getId());
-                context.startActivity(intent);
-            }
+            b.dismiss();
+            Intent intent = new Intent(context, ActionDetailActivity.class);
+            intent.putExtra("selectedActionId", action.getId());
+            context.startActivity(intent);
         } else {
             Toast.makeText(context, "Wrong password", Toast.LENGTH_SHORT).show();
         }

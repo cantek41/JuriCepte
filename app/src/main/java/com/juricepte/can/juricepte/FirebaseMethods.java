@@ -31,6 +31,7 @@ import com.juricepte.can.juricepte.models.Group;
 import com.juricepte.can.juricepte.models.Rating;
 import com.juricepte.can.juricepte.viewModels.ActionDetailViewModel;
 import com.juricepte.can.juricepte.viewModels.ActionListViewModel;
+import com.juricepte.can.juricepte.viewModels.GroupViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +49,7 @@ public class FirebaseMethods implements IFirebaseMethods {
     private String actionCollectionName = "Actions";
     private String groupCollectionName = "Groups";
     private String ratingCollectionName = "Ratings";
-    private Group group;
+    private String group;
     private Object object;
 
     public FirebaseMethods(Object object) {
@@ -109,12 +110,15 @@ public class FirebaseMethods implements IFirebaseMethods {
         });
     }
 
-    public Group getActiveGroup(Action action) {
+    public String getActiveGroup(Action action) {
         group = null;
         dbRef.child(action.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                group = dataSnapshot.getValue(Group.class);
+                group = dataSnapshot.child("activeGroupId").getValue(String.class);
+                if(object instanceof ActionDetailViewModel){
+                    ((ActionDetailViewModel)object).doActiveGroupWorks(group);
+                }
             }
 
             @Override
@@ -125,16 +129,29 @@ public class FirebaseMethods implements IFirebaseMethods {
         return group;
     }
 
-    public void joinAction(final Action action, final String password) {
 
-        if (action.getPasword().equals(password)) {
-            FirebaseUser user = auth.getCurrentUser();
-            HashMap<String, Object> map = new HashMap<>();
-            map.put("name", user.getDisplayName());
-            map.put("vote", false);
-            dbRef.child(action.getId()).child("users").child(user.getUid()).setValue(map);
-        }
+    @Override
+    public void joinAction(Action action, final String password) {
+        db.collection("Actions").document(action.getId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    if (action.getPasword().equals(password)) {
+                        FirebaseUser user = auth.getCurrentUser();
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("name", user.getDisplayName());
+                        map.put("vote", false);
+                        dbRef.child(action.getId()).child("users").child(user.getUid()).setValue(map);
 
+                        if (object instanceof ActionListViewModel) {
+                            ((ActionListViewModel) object).doActionJoinWorks(true);
+                        }
+                    }
+                } else {
+                    ((ActionListViewModel) object).doActionJoinWorks(false);
+                }
+            }
+        });
     }
 
     public List<Action> getAllActions() {
@@ -154,9 +171,9 @@ public class FirebaseMethods implements IFirebaseMethods {
                     if (object instanceof ActionListViewModel) {
                         ((ActionListViewModel) object).doGetAllEventWorks(actionList);
                     }
-                          if (object instanceof ActionDetailViewModel) {
-                            ((ActionDetailViewModel)object).doGetAllEventWorks(actionList);
-                        }
+                    if (object instanceof ActionDetailViewModel) {
+                        ((ActionDetailViewModel) object).doGetAllEventWorks(actionList);
+                    }
 
                 }
             }
@@ -175,6 +192,9 @@ public class FirebaseMethods implements IFirebaseMethods {
                         group.setId(queryDocumentSnapshot.getId());
                         groupList.add(group);
                         Log.d(TAG, "onComplete: " + group.getId());
+                    }
+                    if (object instanceof GroupViewModel) {
+                        ((GroupViewModel) object).doGroupListWork(groupList);
                     }
                 }
             }
@@ -237,11 +257,17 @@ public class FirebaseMethods implements IFirebaseMethods {
     }
 
     public void setRatingScore(Rating rating) {
-        db.collection(ratingCollectionName).document(rating.getId()).set(rating).addOnSuccessListener(new OnSuccessListener<Void>() {
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("totalRatingScore",rating.getRate());
+        db.collection(groupCollectionName).document().collection(rating.getGroupId()).document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Log.d(TAG, "onSuccess: successfull");
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Log.d(TAG, "onComplete: success");
+                }else
+                    Log.d(TAG, "onComplete: "+task.getException());
             }
         });
+
     }
 }

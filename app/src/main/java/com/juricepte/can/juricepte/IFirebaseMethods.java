@@ -10,7 +10,7 @@ public interface IFirebaseMethods {
     public void signIn(String email, String password);
     public void signUp(String email, String password, final String name);
     public void setActiveGroup(final Action action, Group group);
-    public Group getActiveGroup(Action action);
+    public String getActiveGroup(Action action);
     public void joinAction(Action action, final String password);
     public List<Action> getAllActions();
     public List<Group> getGroupListByActionId(final String actionId);

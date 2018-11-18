@@ -30,7 +30,6 @@
 
 
         <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/btn_actionDetail_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -42,7 +41,6 @@
             app:roundedCorners="true" />
 
         <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/btn_actionDetail_gotoScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

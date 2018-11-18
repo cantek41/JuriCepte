@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import com.google.firebase.FirebaseApp;
 import com.juricepte.can.juricepte.R;
 import com.juricepte.can.juricepte.databinding.ActivityActionDetailBinding;
+import com.juricepte.can.juricepte.databinding.ActivityCriteriaListBinding;
 import com.juricepte.can.juricepte.viewModels.ActionDetailViewModel;
+import com.juricepte.can.juricepte.viewModels.CriteriaViewModel;
 
 public class CriteriaActivity extends AppCompatActivity {
 
-    ActivityActionDetailBinding binding;
-    ActionDetailViewModel actionDetailViewModel;
+    ActivityCriteriaListBinding binding;
+    CriteriaViewModel criteriaViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +22,11 @@ public class CriteriaActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_criteria_list);
-        actionDetailViewModel = new ActionDetailViewModel(binding);
-        binding.setActionDetailView(actionDetailViewModel);
+        criteriaViewModel = new CriteriaViewModel(binding);
+        Bundle bundle=getIntent().getExtras();
+        if (bundle != null) {
+            criteriaViewModel.groupId = bundle.getString("groupId");
+        }
+        binding.setCriteriaView(criteriaViewModel);
     }
 }
