@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.juricepte.can.juricepte.R;
 import com.juricepte.can.juricepte.databinding.RowActionBinding;
@@ -22,8 +23,6 @@ import java.util.List;
 public class RatingAdapter extends BaseAdapter {
     List<Rating> raitingList;
     LayoutInflater layoutInflater;
-    RowActionBinding binding;
-    ActionAdapterViewModel actionAdapterViewModel;
 
     Context context;
     public RatingAdapter(List<Rating> raitingList, Context context) {
@@ -58,11 +57,19 @@ public class RatingAdapter extends BaseAdapter {
 
         Rating o = raitingList.get(position);
         if(o!=null){
-            TextView text = (TextView) v.findViewById(R.id.name);
-            CrystalSeekbar seekBar = (CrystalSeekbar) v.findViewById(R.id.type);
+            TextView text = (TextView) v.findViewById(R.id.row_txt_criteria_item);
+           final TextView valuetxt = (TextView) v.findViewById(R.id.row_txt_value);
+            CrystalSeekbar seekBar = (CrystalSeekbar) v.findViewById(R.id.row_seekbar);
             text.setText(o.getName());
             seekBar.setMaxValue(o.getMaxRate());
             seekBar.setMinValue(0);
+            seekBar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
+                @Override
+                public void valueChanged(Number value) {
+                    valuetxt.setText(String.valueOf(value));
+                    o.setRate(value.intValue());
+                }
+            });
         }
         return v;
     }

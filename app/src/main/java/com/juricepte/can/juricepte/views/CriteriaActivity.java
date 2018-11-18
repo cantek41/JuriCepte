@@ -3,6 +3,7 @@ package com.juricepte.can.juricepte.views;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.juricepte.can.juricepte.R;
@@ -17,12 +18,15 @@ public class CriteriaActivity extends AppCompatActivity {
 
 
     private static final String TAG = "CriteriaActivity";
-
+    ListRating raitingList;//firebase gönderilecek data
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criteria_list);
         preperList();
+
+        //grup Id buraya yazılacak
+//        raitingList.getRatings().get(0).setGroupId();
     }
 
 
@@ -37,12 +41,13 @@ public class CriteriaActivity extends AppCompatActivity {
             json = new String(buffer, "UTF-8");
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.getMessage());
         }
         Gson gson= new Gson();
-        ListRating raitingList = gson.fromJson(json, ListRating.class);
-        Rating r=raitingList.getRatings().get(0);
-        Log.i(TAG,r.getName());
+        raitingList = gson.fromJson(json, ListRating.class);
+        RatingAdapter adapter=new RatingAdapter(raitingList.getRatings(),this);
+        ListView list=findViewById(R.id.list_criteria);
+        list.setAdapter(adapter);
 
 
     }

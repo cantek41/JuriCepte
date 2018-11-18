@@ -13,6 +13,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected int _splashTime = 3000;
 
     private Thread splashTread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                     finish();
 
                     Intent i = new Intent();
-                    i.setClass(SplashScreenActivity.this, ActionListActivity.class);
+//                    i.setClass(SplashScreenActivity.this, ActionListActivity.class);
+                    i.setClass(SplashScreenActivity.this, CriteriaActivity.class);
+
                     startActivity(i);
 
                     //stop();

@@ -14,6 +14,5 @@ public class ListRating {
         this.ratings = ratings;
     }
 
-    @SerializedName("events")
-    List<Rating> ratings;
+   public List<Rating> ratings;
 }

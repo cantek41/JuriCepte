@@ -13,8 +13,19 @@
         android:text="fefsdf"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/row_txt_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:textColor="#545454"
+        android:textSize="18sp" />
+
     <com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar
         android:id="@+id/row_seekbar"
+        app:bar_color="@color/colorTurckellBlue"
+        app:corner_radius="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"/>
