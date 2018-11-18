@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Juri Cepte</string>
+    <string name="txt_create">Üye Kaydı</string>
     <string name="actions">Etkinlikler</string>
     <string name="action_detail">Etkinlik Detayı</string>
     <string name="btn_gruops">Gruplar</string>
     <string name="btn_score">Oyla</string>
     <string name="btn_go_score">Sahnedeki Grubu Oyla</string>
+    <string name="btn_create">Oluştur</string>
+
 </resources>
