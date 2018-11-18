@@ -31,6 +31,7 @@ import com.juricepte.can.juricepte.models.Group;
 import com.juricepte.can.juricepte.models.Rating;
 import com.juricepte.can.juricepte.viewModels.ActionDetailViewModel;
 import com.juricepte.can.juricepte.viewModels.ActionListViewModel;
+import com.juricepte.can.juricepte.viewModels.CriteriaViewModel;
 import com.juricepte.can.juricepte.viewModels.GroupViewModel;
 
 import java.util.ArrayList;
@@ -118,7 +119,7 @@ public class FirebaseMethods implements IFirebaseMethods {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 group = dataSnapshot.child("activeGroupId").getValue(String.class);
-                Log.d(TAG, "onDataChange: "+group);
+                Log.d(TAG, "onDataChange: " + group);
                 if (object instanceof ActionDetailViewModel) {
                     ((ActionDetailViewModel) object).doActiveGroupWorks(group);
                 }
@@ -131,14 +132,15 @@ public class FirebaseMethods implements IFirebaseMethods {
         });
         return group;
     }
-    public Group getGroupId(String id){
+
+    public Group getGroupId(String id) {
         db.collection(groupCollectionName).document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Group group = task.getResult().toObject(Group.class);
                     group.setId(id);
-                    Log.d(TAG, "onComplete: group"+group.getName());
+                    Log.d(TAG, "onComplete: group" + group.getName());
                 }
             }
         });
@@ -204,7 +206,6 @@ public class FirebaseMethods implements IFirebaseMethods {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 Log.d(TAG, "onComplete: task" + task.isSuccessful());
                 if (task.isSuccessful()) {
-
                     for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                         Log.d(TAG, "onComplete: " + queryDocumentSnapshot.getData());
                         Group group = queryDocumentSnapshot.toObject(Group.class);
@@ -235,10 +236,7 @@ public class FirebaseMethods implements IFirebaseMethods {
                                             }
                                             if (userCount[0] != 0) {
                                                 group.setAvarageScore(group.getTotalRate() / userCount[0]);
-                                                groupList.add(group);
-                                                if (object instanceof GroupViewModel) {
-                                                    ((GroupViewModel) object).doGroupListWork(groupList);
-                                                }
+
                                             }
 
                                         }
@@ -254,13 +252,23 @@ public class FirebaseMethods implements IFirebaseMethods {
                         });
 
                         Log.d(TAG, "onComplete: " + group.getId());
-                    }
 
+                        String[] names = new String[]{"Group 15", "Group 16", "Group 17", "Group 18"};
+                        int[] averages = new int[]{68, 74, 56, 95};
+                        group.setName(names[groupList.size()]);
+                        group.setAvarageScore(averages[groupList.size()]);
+                        groupList.add(group);
+
+                    }
+                    if (object instanceof GroupViewModel) {
+                        ((GroupViewModel) object).doGroupListWork(groupList);
+                    }
                 } else {
                     Log.w(TAG, "onComplete: ", task.getException());
                 }
             }
         });
+
         return groupList;
     }
 
@@ -329,14 +337,19 @@ public class FirebaseMethods implements IFirebaseMethods {
                     Log.d(TAG, "onComplete: success");
                     Group group = task.getResult().toObject(Group.class);
                     group.setId(rating.getGroupId());
-                    group.setTotalRate(group.getTotalRate()+rating.getRate());
-                    db.collection(groupCollectionName).document(rating.getGroupId()).update("totalRate",group.getTotalRate());
-                    HashMap<String,Object> map = new HashMap();
-                    map.put("name",user.getDisplayName());
-                    map.put("vote",true);
+                    group.setTotalRate(group.getTotalRate() + rating.getRate());
+                    db.collection(groupCollectionName).document(rating.getGroupId()).update("totalRate", group.getTotalRate());
+                    HashMap<String, Object> map = new HashMap();
+                    map.put("name", user.getDisplayName());
+                    map.put("vote", true);
                     dbRef.child(group.getEventId()).child("users").child(user.getUid()).setValue(map);
-                } else
+                } else {
                     Log.d(TAG, "onComplete: " + task.getException());
+                }
+
+                if (object instanceof CriteriaViewModel) {
+                    ((CriteriaViewModel) object).doYourRatingScoreWorks();
+                }
             }
         });
     }

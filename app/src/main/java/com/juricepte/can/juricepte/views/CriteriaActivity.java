@@ -28,7 +28,7 @@ public class CriteriaActivity extends AppCompatActivity {
             criteriaViewModel.groupId = bundle.getString("groupId");
         }
         binding.setCriteriaView(criteriaViewModel);
-        getSupportActionBar().setTitle(getString(R.string.activite));
+        getSupportActionBar().setTitle("Group 17");
 
     }
 }

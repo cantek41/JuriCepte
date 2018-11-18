@@ -22,16 +22,14 @@ public class GroupListActivity extends AppCompatActivity {
         groupViewModel = new GroupViewModel(binding);
 
         Bundle bundle = getIntent().getExtras();
-
-
         if (bundle != null) {
-            Log.d("asd", "onCreate: "+bundle.getString("eventId"));
-            groupViewModel.setEventId( bundle.getString("eventId"));
+            Log.d("asd", "onCreate: " + bundle.getString("eventId"));
+            groupViewModel.setEventId(bundle.getString("eventId"));
 
         }
         groupViewModel.init();
         binding.setGroupsView(groupViewModel);
-        getSupportActionBar().setTitle(getString(R.string.btn_gruops));
+        getSupportActionBar().setTitle("Group 17");
 
 
     }

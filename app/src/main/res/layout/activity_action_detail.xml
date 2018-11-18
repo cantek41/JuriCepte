@@ -18,14 +18,14 @@
         android:gravity="top|center"
         android:orientation="vertical">
 
-        <EditText
+        <TextView
             android:id="@+id/edt_actionDetail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="80"
             android:ems="10"
-            android:hint="Hint"
-            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:textAlignment="center"
             android:text="@={actionDetailView.details}" />
 
 

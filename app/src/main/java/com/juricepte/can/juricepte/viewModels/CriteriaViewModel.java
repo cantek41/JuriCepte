@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.juricepte.can.juricepte.databinding.ActivityCriteriaListBinding;
 import com.juricepte.can.juricepte.models.ListRating;
 import com.juricepte.can.juricepte.models.Rating;
+import com.juricepte.can.juricepte.views.CriteriaActivity;
 import com.juricepte.can.juricepte.views.RatingAdapter;
 
 import java.io.IOException;
@@ -34,11 +35,12 @@ public class CriteriaViewModel extends BaseViewModel {
     }
 
     public void vote() {
-        Rating rating = new Rating();
+      /*  Rating rating = new Rating();
         rating.setGroupId(groupId);
         rating.setRate(65);
+        firebase.setRatingScore(rating);*/
+        ((CriteriaActivity) context).finish();
 
-        firebase.setRatingScore(rating);
     }
 
     private void preperList() {
@@ -58,5 +60,9 @@ public class CriteriaViewModel extends BaseViewModel {
         ListRating raitingList = gson.fromJson(json, ListRating.class);
         RatingAdapter adapter = new RatingAdapter(raitingList.getRatings(), context);
         binding.listCriteria.setAdapter(adapter);
+    }
+
+    public void doYourRatingScoreWorks() {
+      //  ((CriteriaActivity) context).finish();
     }
 }

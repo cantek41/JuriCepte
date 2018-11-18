@@ -49,18 +49,10 @@ public class ActionAdapter extends BaseAdapter {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.row_action, viewGroup, false);
         actionAdapterViewModel = new ActionAdapterViewModel();
         binding.setActionAdapterView(actionAdapterViewModel);
-        actionAdapterViewModel.actionFirst.set(actionList.get(i).getName());
-        actionAdapterViewModel.actionSecond.set(actionList.get(i).getDate().toString());
-
-/*
-        @SuppressLint("CutPasteId") TextView name = (TextView) rowView.findViewById(R.id.row_txt_first);
-        @SuppressLint("CutPasteId") TextView date = (TextView) rowView.findViewById(R.id.row_txt_second);
-
-        name.setText(actionList.get(i).getName());
-
-        date.setText("" + actionList.get(i).getDate());
-*/
-
+        //actionAdapterViewModel.actionFirst.set(actionList.get(i).getName());
+        actionAdapterViewModel.actionFirst.set("Geleceği Yazan Kadınlar Gönüllü Eğitimi");
+        actionAdapterViewModel.actionSecond.set("17-19 Kasım 2018");
+      //  actionAdapterViewModel.actionSecond.set(actionList.get(i).getDate().toString());
         return binding.getRoot();
     }
 }

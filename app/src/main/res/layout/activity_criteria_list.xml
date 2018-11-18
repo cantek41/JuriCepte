@@ -26,7 +26,6 @@
             android:layout_weight="80" />
 
         <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/btn_criteria_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

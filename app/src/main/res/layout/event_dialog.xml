@@ -22,8 +22,8 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="@dimen/bootstrap_h5_hori_padding"
         android:ems="10"
-        android:hint="password"
-        android:inputType="textPersonName"
+        android:hint="şifre"
+        android:inputType="textPassword"
         app:bootstrapBrand="success"
         app:roundedCorners="true" />
 
@@ -48,7 +48,7 @@
 
             android:layout_marginRight="@dimen/bootstrap_h5_hori_padding"
             android:layout_weight="1"
-            android:text="OK"
+            android:text="Gir"
             app:bootstrapBrand="primary"
             app:roundedCorners="true"
             tools:layout_editor_absoluteX="135dp"
@@ -62,7 +62,7 @@
 
             android:layout_toRightOf="@+id/btn_eventDailogOk"
             android:layout_weight="1"
-            android:text="Cancel"
+            android:text="Vazgeç"
             app:bootstrapBrand="danger"
             app:roundedCorners="true" />
 

@@ -25,11 +25,11 @@ public class ActionDetailActivity extends AppCompatActivity {
 
         if (bundle != null) {
             actionDetailViewModel.eventId = bundle.getString("selectedActionId");
-            Log.d("log", "onCreate: "+actionDetailViewModel.eventId);
+            Log.d("log", "onCreate: " + actionDetailViewModel.eventId);
         }
 
         binding.setActionDetailView(actionDetailViewModel);
-        getSupportActionBar().setTitle(getString(R.string.activite_status));
+        getSupportActionBar().setTitle("Geleceği Yazanlar Gönüllü Eğitimi");
 
     }
 }

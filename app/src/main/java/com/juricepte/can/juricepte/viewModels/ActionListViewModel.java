@@ -61,7 +61,7 @@ public class ActionListViewModel extends BaseViewModel {
         final BootstrapButton btnOk = dialogView.findViewById(R.id.btn_eventDailogOk);
         final BootstrapButton btnCancel = dialogView.findViewById(R.id.btn_eventDialogCancel);
 
-        title.setText("Please enter event password");
+        title.setText("Lütfen etkinliğin şifresini girin.");
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

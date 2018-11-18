@@ -39,7 +39,15 @@ public class ActionDetailViewModel extends BaseViewModel {
     public void doGetAllEventWorks(List<Action> actions) {
         action = stream(actions).where(i -> i.getId().equals(eventId)).firstOrNull();
         if (actions != null) {
-            details.set(action.getDescription());
+         //   details.set(action.getDescription());
+            details.set("20+ şehirde binlerce kadının uygulama geliştirme eğitimi alacağı Geleceği Yazan Kadınlar projesinde Gönüllü Android Eğitmeni olmak ister misiniz?\n" +
+                    "\n" +
+                    "Gönüllü eğitmenlerde aradığımız temel kriterler :\n" +
+                    "\n" +
+                    "Android 401 başarı belgesine sahip\n" +
+                    "Mobil uygulama geliştirme tecrübesine sahip \n" +
+                    "Bilgisini paylaşmayı seven\n" +
+                    "Şehir dışı seyahat engeli bulunmayan kişiler");
         }
     }
 
