@@ -21,6 +21,7 @@
         <activity android:name=".views.ActionListActivity"></activity>
         <activity android:name=".views.GroupListActivity"></activity>
         <activity android:name=".views.ActionDetailActivity"></activity>
+        <activity android:name=".views.CriteriaActivity"></activity>
         <activity android:name=".views.UserCreateActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
