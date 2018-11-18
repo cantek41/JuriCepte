@@ -182,7 +182,7 @@ public class FirebaseMethods implements IFirebaseMethods {
         return groupList;
     }
 
-    public List<Rating> getRatingByGroupId(final String groupId) {
+    public List<Rating> getRatingListByGroupId(final String groupId) {
         final List<Rating> ratingList = new ArrayList<>();
         db.collection(ratingCollectionName).whereEqualTo("groupId", groupId).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -197,7 +197,33 @@ public class FirebaseMethods implements IFirebaseMethods {
         });
         return ratingList;
     }
+    public void getRatingByGroup(String groupId){
+        final int[] userCount = new int[1];
+        db.collection(groupCollectionName).document(groupId).collection().get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    Group group = (Group) task.getResult().toObjects(Group.class);
+                    dbRef.child(group.getEventId()).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            userCount[0] = (int) dataSnapshot.getChildrenCount();
+                            if(userCount[0] != 0){
+                                int rate = (group.getTotalRate()*100)/userCount[0];
+                                Log.d(TAG, "onDataChange: "+rate);
+                            }
+                        }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+        });
+
+    }
     public void createAction(Action action) {
         db.collection(actionCollectionName).add(action).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -237,11 +263,16 @@ public class FirebaseMethods implements IFirebaseMethods {
     }
 
     public void setRatingScore(Rating rating) {
-        db.collection(ratingCollectionName).document(rating.getId()).set(rating).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection(groupCollectionName).document(rating.getGroupId()).update("totalVotingRate",rating.getRate()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Log.d(TAG, "onSuccess: successfull");
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Log.d(TAG, "onComplete: success");
+                }else{
+                    Log.d(TAG, "onComplete: "+task.getException());
+                }
             }
         });
+
     }
 }

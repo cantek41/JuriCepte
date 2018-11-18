@@ -8,7 +8,7 @@ public class Group {
     private String eventId;
     private String name;
     private String projectName;
-
+    private int totalRate;
     public Group() {
     }
 
@@ -42,5 +42,13 @@ public class Group {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public int getTotalRate() {
+        return totalRate;
+    }
+
+    public void setTotalRate(int totalRate) {
+        this.totalRate = totalRate;
     }
 }

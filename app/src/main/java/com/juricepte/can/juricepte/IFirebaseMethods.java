@@ -14,7 +14,7 @@ public interface IFirebaseMethods {
     public void joinAction(Action action, final String password);
     public List<Action> getAllActions();
     public List<Group> getGroupListByActionId(final String actionId);
-    public List<Rating> getRatingByGroupId(final String groupId);
+    public List<Rating> getRatingListByGroupId(final String groupId);
     public void createAction(Action action);
     public void addActionGroup(final Group group);
     public void setRatingScore(Rating rating);
