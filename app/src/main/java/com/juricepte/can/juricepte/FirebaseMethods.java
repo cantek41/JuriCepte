@@ -183,7 +183,7 @@ public class FirebaseMethods implements IFirebaseMethods {
 
     public List<Group> getGroupListByActionId(final String actionId) {
         final List<Group> groupList = new ArrayList<>();
-        db.collection(groupCollectionName).whereEqualTo("actionId", actionId).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection(groupCollectionName).whereEqualTo("eventId", actionId).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -196,6 +196,8 @@ public class FirebaseMethods implements IFirebaseMethods {
                     if (object instanceof GroupViewModel) {
                         ((GroupViewModel) object).doGroupListWork(groupList);
                     }
+                }else{
+                    Log.w(TAG, "onComplete: ",task.getException() );
                 }
             }
         });
@@ -220,18 +222,19 @@ public class FirebaseMethods implements IFirebaseMethods {
     }
     public void getRatingByGroup(String groupId){
         final int[] userCount = new int[1];
-        db.collection(groupCollectionName).document(groupId).collection().get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection(groupCollectionName).document(groupId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    Group group = (Group) task.getResult().toObjects(Group.class);
+                    Group group = (Group)  task.getResult().toObject(Group.class);
+
                     dbRef.child(group.getEventId()).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             userCount[0] = (int) dataSnapshot.getChildrenCount();
-                            if(userCount[0] != 0){
-                                int rate = (group.getTotalRate()*100)/userCount[0];
-                                Log.d(TAG, "onDataChange: "+rate);
+                            if (userCount[0] != 0) {
+                                int rate = (group.getTotalRate() * 100) / userCount[0];
+                                Log.d(TAG, "onDataChange: " + rate);
                             }
                         }
 
@@ -241,9 +244,9 @@ public class FirebaseMethods implements IFirebaseMethods {
                         }
                     });
                 }
+
             }
         });
-
     }
 
     public void createAction(Action action) {

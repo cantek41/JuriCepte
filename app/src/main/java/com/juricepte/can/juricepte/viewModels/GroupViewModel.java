@@ -1,11 +1,15 @@
 package com.juricepte.can.juricepte.viewModels;
 
+import android.util.Log;
+
 import com.juricepte.can.juricepte.databinding.ActivityGroupsBinding;
 import com.juricepte.can.juricepte.models.Group;
 import com.juricepte.can.juricepte.views.ActionAdapter;
 import com.juricepte.can.juricepte.views.GroupAdapter;
 
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class GroupViewModel extends BaseViewModel {
     ActivityGroupsBinding binding;
@@ -26,18 +30,9 @@ public class GroupViewModel extends BaseViewModel {
     }
 
     public void doGroupListWork(List<Group> groups) {
-        Group groups1 = new Group();
-        groups1.setName("Group 15");
-        groups.add(groups1);
 
-        Group groups2 = new Group();
-        groups2.setName("Group 16");
-        groups.add(groups2);
-
-        Group groups3 = new Group();
-        groups3.setName("Group 17");
-        groups.add(groups3);
-
+        //groups = firebase.getGroupListByActionId(eventId);
+        Log.d(TAG, "doGroupListWork: "+groups.size());
         GroupAdapter groupAdapter = new GroupAdapter(groups, context);
         binding.listGroups.setAdapter(groupAdapter);
 
